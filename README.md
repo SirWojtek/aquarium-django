@@ -6,7 +6,7 @@ Project contains frontend server helping user manage aquarium.
 ## Dependencies
 - python >= 2.7
 - python2-django
-- sqlite
+- sqlite3
 
 ## Features
 - temperatura (moze byc w 2 miejscach),
