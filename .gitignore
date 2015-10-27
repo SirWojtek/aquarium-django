@@ -1,3 +1,6 @@
 
-# sqlite database file
+# sqlite
 db.sqlite*
+
+# python 
+*.pyc
