@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 
 def status_get(request):
-    return HttpResponse("Hello World!")
+    return render(request, 'status.html', {})
