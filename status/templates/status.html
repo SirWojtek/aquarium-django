@@ -1,5 +1,22 @@
 <body>
 
-<h1>Hello World!</h1>
+<h3>Data read from database:</h3>
+
+{% if temp_list %}
+<table width="100%" border="1">
+<tr>
+    <td><b>Timestamp</b></td>
+    <td><b>Value</b></td>
+</tr>
+{% for temp in temp_list %}
+<tr>
+    <td>{{ temp.timestamp }}</td>
+    <td>{{ temp.value }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+    <p>No temperature data are available.</p>
+{% endif %}
 
 </body>
