@@ -9,16 +9,21 @@ Project contains frontend server helping user manage aquarium.
 - sqlite3
 
 ## Features
-- temperatura (moze byc w 2 miejscach),
-- swiatlo on/off,
-- fitr on/off,
-- led background,
-- grzalka % lub on/off,
-- czas,
-- awarie,
-- status polaczenia z urzadzeniem,
-- kamerka?
-- wykresy:
-  -temperatura
-- komunikacja z atmega po rs232 (dla karola - konwerter napiec),
-- apka pod komorke(restAPI).
+### temperature_module
+- showing temperature,
+- temperature charts,
+- tempearture settings,
+- scheduling,
+
+### light_module
+- showing light status (LED background, up light),
+- scheduling,
+
+### filter_module
+- showing filter status,
+- scheduling,
+
+### stat_module
+- time,
+- system errors,
+- connection status,
