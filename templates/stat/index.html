@@ -1,7 +1,7 @@
-<body>
+{% extends "common/base.html" %}
 
-<h1>This is index page</h1>
+{% block title %}Aquarium Project - Status{% endblock %}
 
-<a href="{% url 'temperature_module:index_get' %}">Temperature</a>
-
-</body>
+{% block content %}
+<h3>Status page</h3>
+{% endblock %}
