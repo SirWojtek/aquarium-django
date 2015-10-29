@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from status import urls as status_urls
+from stat_module import urls as stat_module_urls
+from temperature_module import urls as temperature_module_urls
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^status/', include(status_urls)),
-    url(r'^', include(status_urls)),
+    url(r'^stat/', include(stat_module_urls, namespace = 'stat_module')),
+    url(r'^temperature/', include(temperature_module_urls, namespace = 'temperature_module')),
+    url(r'^', include(stat_module_urls)),
 ]

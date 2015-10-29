@@ -3,7 +3,7 @@
 from os import environ
 environ["DJANGO_SETTINGS_MODULE"] = "aquarium_django.settings"
 
-from status.models import Temperature
+from temperature_module.models import Temperature
 import django
 
 def main():
