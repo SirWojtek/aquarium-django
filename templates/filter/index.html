@@ -4,11 +4,11 @@
 
 {% block content %}
 <h3>Data read from database:</h3>
-{% if temp_list %}
+{% if filter_status_list %}
 <table width="100%" border="1">
 <tr>
     <td><b>Timestamp</b></td>
-    <td><b>Value</b></td>
+    <td><b>Status</b></td>
 </tr>
 {% for filter_data in filter_status_list %}
 <tr>

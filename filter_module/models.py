@@ -9,7 +9,7 @@ class FilterHistory(models.Model):
     @staticmethod
     def get_current_filter_status():
         if FilterHistory.objects.count():
-            return FilterHistory.objects.order_by('timestamp')[0]
+            return FilterHistory.objects.order_by('timestamp').last()
         else:
             return None
 

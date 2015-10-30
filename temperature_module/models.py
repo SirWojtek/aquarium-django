@@ -9,7 +9,7 @@ class TemperatureHistory(models.Model):
     @staticmethod
     def get_current_temperature():
         if TemperatureHistory.objects.count():
-            return TemperatureHistory.objects.order_by('timestamp')[0]
+            return TemperatureHistory.objects.order_by('timestamp').last()
         else:
             return None
 
