@@ -16,3 +16,5 @@ class TemperatureHistory(models.Model):
 
 class TemperatureSchedule(GenericSchedule):
     default_value = Default.temperature
+
+    status = models.IntegerField()
