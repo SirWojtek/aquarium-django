@@ -23,6 +23,7 @@ class GenericSchedule(models.Model):
     start_day = models.CharField(max_length = 2, choices = DAYS_OF_WEEK)
     end_time = models.TimeField()
     end_day = models.CharField(max_length = 2, choices = DAYS_OF_WEEK)
+    status = None  # to be overriten in child models
 
     class Meta:
         abstract = True

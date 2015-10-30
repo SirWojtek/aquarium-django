@@ -1,0 +1,23 @@
+<div id="schedule">
+{% block schedule %}
+    <table width="80%">
+        <tr>
+            <td><b>Start</b></td>
+            <td><b>End</b></td>
+            <td><b>Status</b></td>
+            <td><b>Action</b></td>
+        </tr>
+        <tr>
+        {% for task in schedule_list %}
+            <td>{{ task.start_time }} {{ task.start_day }}</td>
+            <td>{{ task.end_time }} {{ task.end_date }}</td>
+            <td>{{ task.status }}</td>
+            <td>
+                <button type="submit" formmethod="post" formaction="{% url edit_view task.id %}">Edit</button>
+                <button type="submit" formmethod="post" formaction="{% url delete_view task.id %}">Delete</button>
+            </td>
+        {% endfor %}
+        </tr>
+    </table>
+{% endblock %}
+</div>
