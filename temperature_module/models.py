@@ -6,9 +6,10 @@ class TemperatureHistory(models.Model):
     value = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add = True)
 
-    def get_current_temperature(self):
-        if len(self.objects):
-            return self.objects.order_by('timestamp')[0].value
+    @staticmethod
+    def get_current_temperature():
+        if TemperatureHistory.objects.count():
+            return TemperatureHistory.objects.order_by('timestamp')[0]
         else:
             return None
 

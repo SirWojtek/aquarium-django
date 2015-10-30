@@ -4,4 +4,29 @@
 
 {% block content %}
 <h3>Status page</h3>
+
+<h5>Temperature</h5>
+<table width="20%">
+    <tr>
+        <td>Temperature</td>
+        <td>{{ temp_value }}</td>
+    </tr>
+    <tr>
+        <td>Last measure</td>
+        <td>{{ temp_timestamp }}</td>
+    </tr>
+</table>
+
+<h5>Filter</h5>
+<table width="20%">
+    <tr>
+        <td>Status</td>
+        <td>{{ filter_status }}</td>
+    </tr>
+    <tr>
+        <td>Last measure</td>
+        <td>{{ filter_timestamp }}</td>
+    </tr>
+</table>
+
 {% endblock %}
