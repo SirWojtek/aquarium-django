@@ -1,0 +1,23 @@
+{% extends "common/base.html" %}
+
+{% block title %}Aquarium Project - Filter{% endblock %}
+
+{% block content %}
+<h3>Data read from database:</h3>
+{% if temp_list %}
+<table width="100%" border="1">
+<tr>
+    <td><b>Timestamp</b></td>
+    <td><b>Value</b></td>
+</tr>
+{% for filter_data in filter_status_list %}
+<tr>
+    <td>{{ filter_data.timestamp }}</td>
+    <td>{{ filter_data.status }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+    <p>No filter data are available.</p>
+{% endif %}
+{% endblock %}
