@@ -20,9 +20,9 @@ class GenericSchedule(models.Model):
         (SUNDAY, 'Sunday'))
 
     start_time = models.TimeField()
-    start_day = models.CharField(max_length = 2, choises = DAYS_OF_WEEK)
+    start_day = models.CharField(max_length = 2, choices = DAYS_OF_WEEK)
     end_time = models.TimeField()
-    end_day = models.CharField(max_length = 2, choises = DAYS_OF_WEEK)
+    end_day = models.CharField(max_length = 2, choices = DAYS_OF_WEEK)
 
     class Meta:
         abstract = True
