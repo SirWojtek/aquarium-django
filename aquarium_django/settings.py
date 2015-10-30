@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stat_module',
-    'temperature_module'
+    'temperature_module',
+    'filter_module'
 )
 
 MIDDLEWARE_CLASSES = (
