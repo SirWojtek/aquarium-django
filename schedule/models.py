@@ -25,5 +25,7 @@ class GenericSchedule(models.Model):
     end_day = models.CharField(max_length = 2, choices = DAYS_OF_WEEK)
     status = None  # to be overriten in child models
 
+    form_fields = [ 'start_day', 'start_time', 'end_day', 'end_time', 'status' ]
+
     class Meta:
         abstract = True
