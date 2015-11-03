@@ -1,26 +1,33 @@
 <div id="schedule">
 {% block schedule %}
-    <table width="80%">
+    <table width="100%">
         <tr>
-            <td><b>Start</b></td>
-            <td><b>End</b></td>
+            <td><b>Start day</b></td>
+            <td><b>Start time</b></td>
+            <td><b>End day</b></td>
+            <td><b>End time</b></td>
             <td><b>Status</b></td>
             <td><b>Action</b></td>
         </tr>
         <tr>
         {% for task in schedule_list %}
-            <td>{{ task.start_time }} {{ task.start_day }}</td>
-            <td>{{ task.end_time }} {{ task.end_date }}</td>
+        <tr>
+            <td>{{ task.start_day }}</td>
+            <td>{{ task.start_time }}</td>
+            <td>{{ task.end_day }}</td>
+            <td>{{ task.end_time }}</td>
             <td>{{ task.status }}</td>
             <td>
                 <button type="submit" formmethod="post" formaction="{% url edit_view task.id %}">Edit</button>
                 <button type="submit" formmethod="post" formaction="{% url delete_view task.id %}">Delete</button>
             </td>
+        </tr>
         {% endfor %}
         </tr>
     </table>
     <h4>Add schedule rule</h4>
     <form method="post" action="">
+        {% csrf_token %}
         {{ schedule_form }}
         <button type="submit" formmethod="post" formaction="{% url add_view %}">Add</button>
     </form>
