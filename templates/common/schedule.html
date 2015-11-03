@@ -22,6 +22,7 @@
     <h4>Add schedule rule</h4>
     <form method="post" action="">
         {{ schedule_form }}
+        <button type="submit" formmethod="post" formaction="{% url add_view %}">Add</button>
     </form>
 {% endblock %}
 </div>
