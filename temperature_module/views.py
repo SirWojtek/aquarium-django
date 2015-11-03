@@ -7,9 +7,13 @@ def index_get(request):
 def schedule_get(request):
     return render(request, 'common/schedule.html', {
             'schedule_list' : TemperatureSchedule.objects.all(),
-            'edit_view' : 'schedule_edit',
-            'delete_view' : 'schedule_delete',
+            'add_view' : 'temperature_module:schedule_add',
+            'edit_view' : 'temperature_module:schedule_edit',
+            'delete_view' : 'temperature_module:schedule_delete',
             'schedule_form' : TemperatureScheduleForm()})
+
+def schedule_add(request):
+    pass
 
 def schedule_edit(request):
     pass
