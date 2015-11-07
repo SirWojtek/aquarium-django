@@ -6,13 +6,5 @@ class FilterHistory(models.Model):
     status = models.BooleanField()
     timestamp = models.DateTimeField(auto_now_add = True)
 
-    @staticmethod
-    def get_current_filter_status():
-        if FilterHistory.objects.count():
-            return FilterHistory.objects.order_by('timestamp').last()
-        else:
-            return None
-
-
 class FilterSchedule(GenericSchedule):
     default_value = Default.filter_status
