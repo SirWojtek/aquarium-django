@@ -5,27 +5,26 @@
 {% block content %}
 <h3>Status page</h3>
 
-<h5>Temperature</h5>
 <table width="20%">
     <tr>
-        <td>Temperature</td>
+        <td><b>Temperature</b></td>
         <td>{{ temp_value }}</td>
     </tr>
     <tr>
-        <td>Last measure</td>
-        <td>{{ temp_timestamp }}</td>
+        <td><b>Heating</b></td>
+        <td>{{ heating_status }}</td>
     </tr>
-</table>
-
-<h5>Filter</h5>
-<table width="20%">
     <tr>
-        <td>Status</td>
+        <td><b>Filter</b></td>
         <td>{{ filter_status }}</td>
     </tr>
     <tr>
-        <td>Last measure</td>
-        <td>{{ filter_timestamp }}</td>
+        <td><b>Light</b></td>
+        <td>{{ light_status }}</td>
+    </tr>
+    <tr>
+        <td><b>Last measure</b></td>
+        <td>{{ timestamp }}</td>
     </tr>
 </table>
 
