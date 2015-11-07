@@ -14,6 +14,10 @@ class Status(models.Model):
         Status.objects.all().delete()
         models.Model.save(self, *args, **kwargs)
 
+    @staticmethod
+    def get():
+        return Status.objects.all().first()
+
 # Contains data for driver
 class Settings(models.Model):
     temperature = models.IntegerField()
@@ -26,3 +30,7 @@ class Settings(models.Model):
     def save(self, *args, **kwargs):
         Settings.objects.all().delete()
         models.Model.save(self, *args, **kwargs)
+
+    @staticmethod
+    def get():
+        return Settings.objects.all().first()
