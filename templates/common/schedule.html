@@ -18,8 +18,14 @@
             <td>{{ task.end_time }}</td>
             <td>{{ task.status }}</td>
             <td>
-                <button type="submit" formmethod="post" formaction="{% url edit_view task.id %}">Edit</button>
-                <button type="submit" formmethod="post" formaction="{% url delete_view task.id %}">Delete</button>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <button type="submit" formmethod="post" formaction="{% url edit_view task.id %}">Edit</button>
+                </form>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <button type="submit" formmethod="post" formaction="{% url delete_view task.id %}">Delete</button>
+                </form>
             </td>
         </tr>
         {% endfor %}
