@@ -28,20 +28,26 @@ def schedule_edit(request, id):
     if not task:
         raise Exception("Cannot found task for edit")
     if not request.POST:
-        add_form = TemperatureScheduleForm(instance = task)
-        return render(request, 'common/schedule.html', {
-            'schedule_list' : TemperatureSchedule.objects.all(),
-            'add_view' : module_name + ':schedule_add',
-            'edit_view' : module_name + ':schedule_edit',
-            'delete_view' : module_name + ':schedule_delete',
-            'schedule_form' : add_form,
-            'edited_id' : id })
+        return _schedule_edit_fill_form(request, task)
     else:
-        changes = TemperatureScheduleForm(request.POST, instance = task)
-        if not changes.is_valid():
-            raise Exception(module_name + ".shedule_add form validation fails")
-        changes.save()
-        return redirect(module_name + ':schedule_get')
+        return _schedule_edit_commit_changes(request, task)
+
+def _schedule_edit_fill_form(request, task):
+    add_form = TemperatureScheduleForm(instance = task)
+    return render(request, 'common/schedule.html', {
+        'schedule_list' : TemperatureSchedule.objects.all(),
+        'add_view' : module_name + ':schedule_add',
+        'edit_view' : module_name + ':schedule_edit',
+        'delete_view' : module_name + ':schedule_delete',
+        'schedule_form' : add_form,
+        'edited_id' : task.id })
+
+def _schedule_edit_commit_changes(request, task):
+    changes = TemperatureScheduleForm(request.POST, instance = task)
+    if not changes.is_valid():
+        raise Exception(module_name + ".shedule_add form validation fails")
+    changes.save()
+    return redirect(module_name + ':schedule_get')
 
 def schedule_delete(request, id):
     task = TemperatureSchedule.objects.get(id = id)
@@ -49,4 +55,3 @@ def schedule_delete(request, id):
         raise Exception("Cannot found task for delete")
     task.delete()
     return redirect(module_name + ':schedule_get')
-
