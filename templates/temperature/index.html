@@ -20,4 +20,5 @@
 {% else %}
     <p>No temperature data are available.</p>
 {% endif %}
+<a href="{% url 'temperature_module:schedule_get' %}">Schedule</a>
 {% endblock %}
