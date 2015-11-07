@@ -23,11 +23,27 @@ def schedule_add(request):
     task.save()
     return redirect(module_name + ':schedule_get')
 
-def schedule_edit(request):
-    pass
+def schedule_edit(request, id):
+    task = TemperatureSchedule.objects.get(id = id)
+    if not task:
+        raise Exception("Cannot found task for edit")
+    if not request.POST:
+        add_form = TemperatureScheduleForm(instance = task)
+        return render(request, 'common/schedule.html', {
+            'schedule_list' : TemperatureSchedule.objects.all(),
+            'add_view' : module_name + ':schedule_add',
+            'edit_view' : module_name + ':schedule_edit',
+            'delete_view' : module_name + ':schedule_delete',
+            'schedule_form' : add_form,
+            'edited_id' : id })
+    else:
+        changes = TemperatureScheduleForm(request.POST, instance = task)
+        if not changes.is_valid():
+            raise Exception(module_name + ".shedule_add form validation fails")
+        changes.save()
+        return redirect(module_name + ':schedule_get')
 
 def schedule_delete(request, id):
-    print 'aaaa'
     task = TemperatureSchedule.objects.get(id = id)
     if not task:
         raise Exception("Cannot found task for delete")

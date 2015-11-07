@@ -18,24 +18,27 @@
             <td>{{ task.end_time }}</td>
             <td>{{ task.status }}</td>
             <td>
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <button type="submit" formmethod="post" formaction="{% url edit_view task.id %}">Edit</button>
-                </form>
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <button type="submit" formmethod="post" formaction="{% url delete_view task.id %}">Delete</button>
-                </form>
+                <a href="{% url edit_view task.id %}">Edit</a>
+                <a href="{% url delete_view task.id %}">Delete</a>
             </td>
         </tr>
         {% endfor %}
         </tr>
     </table>
+    {% if not edited_id %}
     <h4>Add schedule rule</h4>
     <form method="post" action="">
         {% csrf_token %}
         {{ schedule_form }}
         <button type="submit" formmethod="post" formaction="{% url add_view %}">Add</button>
     </form>
+    {% else %}
+    <h4>Edit schedule rule</h4>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ schedule_form }}
+        <button type="submit" formmethod="post" formaction="{% url edit_view edited_id %}">Submit</button>
+    </form>
+    {% endif %}
 {% endblock %}
 </div>
