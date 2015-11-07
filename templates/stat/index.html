@@ -9,51 +9,62 @@
     <tr>
         <td width="50%">
             <h4>Current status</h4>
-            <table>
-                <tr>
-                    <td><b>Temperature</b></td>
-                    <td>{{ temp_value_status }}</td>
-                </tr>
-                <tr>
-                    <td><b>Heating</b></td>
-                    <td>{{ heating_status }}</td>
-                </tr>
-                <tr>
-                    <td><b>Filter</b></td>
-                    <td>{{ filter_status }}</td>
-                </tr>
-                <tr>
-                    <td><b>Light</b></td>
-                    <td>{{ light_status }}</td>
-                </tr>
-                <tr>
-                    <td><b>Last measure</b></td>
-                    <td>{{ status_timestamp }}</td>
-                </tr>
-            </table>
         </td>
         <td width="50%">
             <h4>Current settings</h4>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {% if status %}
             <table>
                 <tr>
                     <td><b>Temperature</b></td>
-                    <td>{{ temp_value_settings }}</td>
+                    <td>{{ status.temperature }}</td>
                 </tr>
                 <tr>
                     <td><b>Heating</b></td>
-                    <td>{{ heating_settings }}</td>
+                    <td>{{ status.heating_status }}</td>
                 </tr>
                 <tr>
                     <td><b>Filter</b></td>
-                    <td>{{ filter_settings }}</td>
+                    <td>{{ status.filter_status }}</td>
                 </tr>
                 <tr>
                     <td><b>Light</b></td>
-                    <td>{{ light_settings }}</td>
+                    <td>{{ status.light_status }}</td>
+                </tr>
+                <tr>
+                    <td><b>Last measure</b></td>
+                    <td>{{ status.last_update }}</td>
+                </tr>
+            </table>
+            {% else %}
+                <h4> No data available</h4>
+            {% endif %}
+        </td>
+        <td width="50%">
+
+            <table>
+                <tr>
+                    <td><b>Temperature</b></td>
+                    <td>{{ settings.temperature }}</td>
+                </tr>
+                <tr>
+                    <td><b>Heating</b></td>
+                    <td>{{ settings.heating_status }}</td>
+                </tr>
+                <tr>
+                    <td><b>Filter</b></td>
+                    <td>{{ settings.filter_status }}</td>
+                </tr>
+                <tr>
+                    <td><b>Light</b></td>
+                    <td>{{ settings.light_status }}</td>
                 </tr>
                 <tr>
                     <td><b>Last change</b></td>
-                    <td>{{ settings_timestamp }}</td>
+                    <td>{{ settings.last_update }}</td>
                 </tr>
             </table>
         </td>
