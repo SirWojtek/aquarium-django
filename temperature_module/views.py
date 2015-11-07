@@ -26,5 +26,11 @@ def schedule_add(request):
 def schedule_edit(request):
     pass
 
-def schedule_delete(request):
-    pass
+def schedule_delete(request, id):
+    print 'aaaa'
+    task = TemperatureSchedule.objects.get(id = id)
+    if not task:
+        raise Exception("Cannot found task for delete")
+    task.delete()
+    return redirect(module_name + ':schedule_get')
+
