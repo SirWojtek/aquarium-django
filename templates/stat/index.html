@@ -5,26 +5,58 @@
 {% block content %}
 <h3>Status page</h3>
 
-<table width="20%">
+<table>
     <tr>
-        <td><b>Temperature</b></td>
-        <td>{{ temp_value }}</td>
-    </tr>
-    <tr>
-        <td><b>Heating</b></td>
-        <td>{{ heating_status }}</td>
-    </tr>
-    <tr>
-        <td><b>Filter</b></td>
-        <td>{{ filter_status }}</td>
-    </tr>
-    <tr>
-        <td><b>Light</b></td>
-        <td>{{ light_status }}</td>
-    </tr>
-    <tr>
-        <td><b>Last measure</b></td>
-        <td>{{ timestamp }}</td>
+        <td width="50%">
+            <h4>Current status</h4>
+            <table>
+                <tr>
+                    <td><b>Temperature</b></td>
+                    <td>{{ temp_value_status }}</td>
+                </tr>
+                <tr>
+                    <td><b>Heating</b></td>
+                    <td>{{ heating_status }}</td>
+                </tr>
+                <tr>
+                    <td><b>Filter</b></td>
+                    <td>{{ filter_status }}</td>
+                </tr>
+                <tr>
+                    <td><b>Light</b></td>
+                    <td>{{ light_status }}</td>
+                </tr>
+                <tr>
+                    <td><b>Last measure</b></td>
+                    <td>{{ status_timestamp }}</td>
+                </tr>
+            </table>
+        </td>
+        <td width="50%">
+            <h4>Current settings</h4>
+            <table>
+                <tr>
+                    <td><b>Temperature</b></td>
+                    <td>{{ temp_value_settings }}</td>
+                </tr>
+                <tr>
+                    <td><b>Heating</b></td>
+                    <td>{{ heating_settings }}</td>
+                </tr>
+                <tr>
+                    <td><b>Filter</b></td>
+                    <td>{{ filter_settings }}</td>
+                </tr>
+                <tr>
+                    <td><b>Light</b></td>
+                    <td>{{ light_settings }}</td>
+                </tr>
+                <tr>
+                    <td><b>Last change</b></td>
+                    <td>{{ settings_timestamp }}</td>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>
 
