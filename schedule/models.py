@@ -29,3 +29,13 @@ class GenericSchedule(models.Model):
 
     class Meta:
         abstract = True
+
+    def __repr__(self):
+        return self._get_js_format()
+
+    def _get_js_format(self):
+        return """{ start_time : \'%s\',
+            start_day : \'%s\',
+            end_time : \'%s\',
+            end_day : \'%s\' }""" % (self.start_time, self.start_day,
+                self.end_time, self.end_day)
