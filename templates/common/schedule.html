@@ -1,3 +1,8 @@
+{% extends "common/base.html" %}
+
+{% block title %}Aquarium Project - Schedule{% endblock %}
+
+{% block content %}
 {% load staticfiles %}
 <script type="text/javascript" src="{% static "jquery.js" %}"></script>
 <script type="text/javascript">var schedule_list = {{ schedule_list | safe }}</script>
@@ -47,3 +52,4 @@
     {% endif %}
 {% endblock %}
 </div>
+{% endblock %}
