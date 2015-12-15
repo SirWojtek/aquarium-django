@@ -1,15 +1,18 @@
-from django.db import models
-from schedule.models import GenericSchedule
-from django.forms import ModelForm
+from django import forms
+from schedule.models import ScheduleForm, ScheduleDbusInterface
 
-class TemperatureHistory(models.Model):
-    value = models.IntegerField()
-    timestamp = models.DateTimeField(auto_now_add = True)
+class TemperatureScheduleForm(ScheduleForm):
+	status = forms.IntegerField()
 
-class TemperatureSchedule(GenericSchedule):
-    status = models.IntegerField()
+class TemperatureDbusInterface(ScheduleDbusInterface):
+    def get_schedule_list():
+        pass
 
-class TemperatureScheduleForm(ModelForm):
-    class Meta:
-        model = TemperatureSchedule
-        fields = GenericSchedule.form_fields
+    def add_schedule_task(task):
+        pass
+
+    def update_schedule_task(old_task, new_task):
+        pass
+
+    def remove_schedule_task(task):
+        pass

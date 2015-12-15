@@ -1,7 +1,7 @@
-from django.db import models
+from django import forms
 
 # This is abstract model used for creating schedule tables for each module.
-class GenericSchedule(models.Model):
+class ScheduleForm:
     MONDAY = 'M'
     TUESDAY = 'TU'
     WEDNESDAY = 'W'
@@ -19,16 +19,13 @@ class GenericSchedule(models.Model):
         (SATURDAY, 'Saturday'),
         (SUNDAY, 'Sunday'))
 
-    start_time = models.TimeField()
-    start_day = models.CharField(max_length = 2, choices = DAYS_OF_WEEK)
-    end_time = models.TimeField()
-    end_day = models.CharField(max_length = 2, choices = DAYS_OF_WEEK)
+    start_time = forms.TimeField()
+    start_day = forms.ChoiceField(choices = DAYS_OF_WEEK)
+    end_time = forms.TimeField()
+    end_day = forms.ChoiceField(choices = DAYS_OF_WEEK)
     status = None  # to be overriten in child models
 
     form_fields = [ 'start_day', 'start_time', 'end_day', 'end_time', 'status' ]
-
-    class Meta:
-        abstract = True
 
     def __repr__(self):
         return self._get_js_format()
@@ -39,3 +36,16 @@ class GenericSchedule(models.Model):
             end_time : \'%s\',
             end_day : \'%s\' }""" % (self.start_time, self.start_day,
                 self.end_time, self.end_day)
+
+class ScheduleDbusInterface:
+    def get_schedule_list():
+        raise NotImplementedError()
+
+    def add_schedule_task(task):
+        raise NotImplementedError()
+
+    def update_schedule_task(old_task, new_task):
+        raise NotImplementedError()
+
+    def remove_schedule_task(task):
+        raise NotImplementedError()

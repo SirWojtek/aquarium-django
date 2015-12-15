@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from models import TemperatureHistory, TemperatureSchedule, TemperatureScheduleForm
+from models import TemperatureScheduleForm, TemperatureDbusInterface
 from schedule.views import ScheduleViews
 
-schedule_views = ScheduleViews(__name__.split('.')[0], TemperatureSchedule, TemperatureScheduleForm)
+schedule_views = ScheduleViews(__name__.split('.')[0],
+	TemperatureDbusInterface, TemperatureScheduleForm)
 
 def index_get(request):
     return render(request, 'temperature/index.html', {'temp_list' : TemperatureHistory.objects.all() })
