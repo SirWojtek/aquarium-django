@@ -13,6 +13,11 @@ class Dbus:
         return obj.get_temperature_status(dbus_interface = cls.interface_name)
 
     @classmethod
+    def get_schedule_list(cls):
+        obj = cls._get_dbus_object()
+        return obj.list_schedule_task(dbus_interface = cls.interface_name)
+
+    @classmethod
     def _get_dbus_object(cls):
         return cls.bus.get_object(cls.service_name, cls.service_object)
 
