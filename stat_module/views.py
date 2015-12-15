@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from models import Status, Settings
-from dbus_interface import Dbus
+from dbus_communication.dbus_interface import Dbus
 
 def index_get(request):
     status = _get_status()
