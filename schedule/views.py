@@ -20,7 +20,7 @@ class ScheduleViews:
         task = self._form_class(request.POST)
         if not task.is_valid():
             raise Exception(self._module_name + ".shedule_add form validation fails")
-        self.dbus_schedule_interface.add_schedule_task(task)
+        self._dbus_schedule_interface.add_schedule_task(task)
         return redirect(self._module_name + ':schedule_get')
 
     def edit(self, request, task):
