@@ -22,9 +22,9 @@
         <tr>
         {% for task in schedule_list %}
         <tr>
-            <td>{{ task.get_start_day_display }}</td>
+            <td>{{ task.start_day }}</td>
             <td>{{ task.start_time }}</td>
-            <td>{{ task.get_end_day_display }}</td>
+            <td>{{ task.end_day }}</td>
             <td>{{ task.end_time }}</td>
             <td>{{ task.status }}</td>
             <td>
