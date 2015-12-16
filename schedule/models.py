@@ -38,14 +38,18 @@ class ScheduleForm:
                 self.end_time, self.end_day)
 
 class ScheduleDbusInterface:
+    @staticmethod
     def get_schedule_list():
         raise NotImplementedError()
 
+    @staticmethod
     def add_schedule_task(task):
         raise NotImplementedError()
 
+    @staticmethod
     def update_schedule_task(old_task, new_task):
         raise NotImplementedError()
 
+    @staticmethod
     def remove_schedule_task(task):
         raise NotImplementedError()

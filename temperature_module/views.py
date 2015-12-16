@@ -6,7 +6,7 @@ schedule_views = ScheduleViews(__name__.split('.')[0],
 	TemperatureDbusInterface, TemperatureScheduleForm)
 
 def index_get(request):
-    return render(request, 'temperature/index.html', {'temp_list' : TemperatureHistory.objects.all() })
+    return render(request, 'temperature/index.html', {'temp_list' : None })
 
 def schedule_get(request):
     return schedule_views.get(request)
