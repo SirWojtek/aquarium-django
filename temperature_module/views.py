@@ -3,7 +3,7 @@ from models import TemperatureScheduleForm, TemperatureDbusInterface
 from schedule.views import ScheduleViews
 
 schedule_views = ScheduleViews(__name__.split('.')[0],
-	TemperatureDbusInterface, TemperatureScheduleForm)
+	TemperatureDbusInterface(), TemperatureScheduleForm)
 
 def index_get(request):
     return render(request, 'temperature/index.html', {'temp_list' : None })
