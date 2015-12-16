@@ -18,6 +18,11 @@ class Dbus:
         return obj.list_schedule_task(dbus_interface = cls.interface_name)
 
     @classmethod
+    def add_schedule_task(cls, task):
+        obj = cls._get_dbus_object()
+        return obj.add_schedule_task(task, dbus_interface = cls.interface_name)
+
+    @classmethod
     def _get_dbus_object(cls):
         return cls.bus.get_object(cls.service_name, cls.service_object)
 
