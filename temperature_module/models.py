@@ -14,7 +14,6 @@ class TemperatureDbusInterface(ScheduleDbusInterface):
         return self._task_list
 
     def add_schedule_task(self, task):
-        # print task.start_day
         Dbus.add_schedule_task(task.to_dbus_message())
 
     def update_schedule_task(self, old_task, new_task):
@@ -35,17 +34,3 @@ class TemperatureDbusInterface(ScheduleDbusInterface):
     def _get_task_from_list(self, id):
         id = int(id)
         return next(x for x in self._task_list if x.id == id)
-
-    # @staticmethod
-    # def _create_dbus_message_from_form(task):
-    #     data = task.cleaned_data
-    #     return ( data['start_day'], (data['start_time'].hour, data['start_time'].minute),
-    #         data['end_day'], (data['end_time'].hour, data['end_time'].minute),
-    #         data['status'])
-
-    # @staticmethod
-    # def _create_dbus_message_from_task(task_from_form):
-    #     data = task_from_form.cleaned_data
-    #     return ( data['start_day'], (data['start_time'].hour, data['start_time'].minute),
-    #         data['end_day'], (data['end_time'].hour, data['end_time'].minute),
-    #         data['status'])
