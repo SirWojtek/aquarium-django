@@ -25,8 +25,3 @@ class Dbus:
     @classmethod
     def _get_dbus_object(cls):
         return cls.bus.get_object(cls.service_name, cls.service_object)
-
-# def _get_dbus_session(request):
-#     if not request.session.get('dbus'):
-#         request.session['dbus'] = dbus.SessionBus()
-#     return request.session['dbus']
