@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from models import Task
 
 class ScheduleViews:
     def __init__(self, module_name, dbus_schedule_interface, form_class):
@@ -20,7 +21,7 @@ class ScheduleViews:
         task = self._form_class(request.POST)
         if not task.is_valid():
             raise Exception(self._module_name + ".shedule_add form validation fails")
-        self._dbus_schedule_interface.add_schedule_task(task)
+        self._dbus_schedule_interface.add_schedule_task(Task.from_form(task))
         return redirect(self._module_name + ':schedule_get')
 
     def edit(self, request, task):
@@ -46,6 +47,6 @@ class ScheduleViews:
         self._dbus_schedule_interface.update_schedule_task(task, changes)
         return redirect(self._module_name + ':schedule_get')
 
-    def delete(self, request, task):
-        self.dbus_schedule_interface.remove_schedule_task(task)
+    def delete(self, request, task_id):
+        self._dbus_schedule_interface.remove_schedule_task(task_id)
         return redirect(self._module_name + ':schedule_get')

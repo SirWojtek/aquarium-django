@@ -34,13 +34,40 @@ class ScheduleForm(forms.Form):
     status = None  # to be overriten in child forms
 
 class Task:
-    def __init__(self, id, dbus_task):
-        self.id = id
-        self.start_day = get_readable_day(dbus_task[0])
-        self.start_time = time(dbus_task[1][0], dbus_task[1][1])
-        self.end_day = get_readable_day(dbus_task[2])
-        self.end_time = time(dbus_task[3][0], dbus_task[3][1])
-        self.status = dbus_task[4]
+    def __init__(self):
+        self.id = 0
+        self.start_day = None
+        self.start_time = None
+        self.end_day = None
+        self.end_time = None
+        self.status = None
+
+    @staticmethod
+    def from_dbus(id, dbus_task):
+        task = Task()
+        task.start_day = get_readable_day(dbus_task[0])
+        task.start_time = time(dbus_task[1][0], dbus_task[1][1])
+        task.end_day = get_readable_day(dbus_task[2])
+        task.end_time = time(dbus_task[3][0], dbus_task[3][1])
+        task.status = dbus_task[4]
+        task.id = id
+        return task
+
+    @staticmethod
+    def from_form(form_task):
+        task = Task()
+        task.start_day = get_readable_day(form_task.cleaned_data['start_day'])
+        task.start_time = form_task.cleaned_data['start_time']
+        task.end_day = get_readable_day(form_task.cleaned_data['end_day'])
+        task.end_time = form_task.cleaned_data['end_time']
+        task.status = form_task.cleaned_data['status']
+        print task
+        return task
+
+    def to_dbus_message(self):
+        return ( get_raw_day(self.start_day), (self.start_time.hour, self.start_time.minute),
+            get_raw_day(self.end_day), (self.end_time.hour, self.end_time.minute),
+            self.status)
 
     def __repr__(self):
         return self._get_js_format()
