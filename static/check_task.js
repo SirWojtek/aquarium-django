@@ -28,8 +28,8 @@ function get_dates(task) {
 }
 
 function is_task_within_another(t, a) {
-    return (a.start_date < t.start_date && a.end_date > t.start_date) ||
-        (a.start_date < t.end_date && a.end_date > t.end_date);
+    return (a.start_date <= t.start_date && a.end_date >= t.end_date) ||
+        (a.start_date <= t.end_date && a.end_date >= t.end_date);
 }
 
 function is_task_within_another_in_schedule(task) {
