@@ -7,9 +7,10 @@ class TemperatureScheduleForm(ScheduleForm):
 
 class TemperatureDbusInterface(ScheduleDbusInterface):
     def __init__(self):
-        self._task_list = self._update_task_list()
+        self._update_task_list()
 
     def get_schedule_list(self):
+        self._update_task_list()
         return self._task_list
 
     def add_schedule_task(self, task):
@@ -30,8 +31,7 @@ class TemperatureDbusInterface(ScheduleDbusInterface):
 
     def _update_task_list(self):
         current_id = 1
-        task_list = []
+        self._task_list = []
         for task in Dbus.get_schedule_list():
-            task_list.append(Task(current_id, task))
+            self._task_list.append(Task(current_id, task))
             current_id += 1
-        return task_list
