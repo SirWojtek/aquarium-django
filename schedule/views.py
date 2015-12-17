@@ -39,7 +39,7 @@ class ScheduleViews:
             'edit_view' : self._module_name + ':schedule_edit',
             'delete_view' : self._module_name + ':schedule_delete',
             'schedule_form' : add_form,
-            'edited_id' : id })
+            'edited_task' : task })
 
     def _edit_commit_changes(self, request, id):
         changes = self._form_class(request.POST)

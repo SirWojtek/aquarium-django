@@ -84,8 +84,9 @@ class Task:
         return """{ start_time : \'%s\',
             start_day : \'%s\',
             end_time : \'%s\',
-            end_day : \'%s\' }""" % (self.start_time, get_raw_day(self.start_day),
-                self.end_time, get_raw_day(self.end_day))
+            end_day : \'%s\',
+            id : \'%s\' }""" % (self.start_time, get_raw_day(self.start_day),
+                self.end_time, get_raw_day(self.end_day), self.id)
 
 class ScheduleDbusInterface:
     @staticmethod
