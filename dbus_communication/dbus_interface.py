@@ -23,6 +23,11 @@ class Dbus:
         return obj.add_schedule_task(task, dbus_interface = cls.interface_name)
 
     @classmethod
+    def update_schedule_task(cls, old_task, new_task):
+        obj = cls._get_dbus_object()
+        return obj.update_schedule_task((old_task, new_task), dbus_interface = cls.interface_name)
+
+    @classmethod
     def remove_schedule_task(cls, task):
         obj = cls._get_dbus_object()
         print task
