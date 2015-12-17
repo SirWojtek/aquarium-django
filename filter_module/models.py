@@ -1,15 +1,12 @@
-from django.db import models
-from schedule.models import GenericSchedule
-from django.forms import ModelForm
+from django import forms
+from schedule.models import ScheduleForm, ScheduleDbusInterface
 
-class FilterHistory(models.Model):
-    status = models.BooleanField()
-    timestamp = models.DateTimeField(auto_now_add = True)
+class FilterScheduleForm(ScheduleForm):
+    status = forms.BooleanField()
 
-class FilterSchedule(GenericSchedule):
-    status = models.BooleanField()
+class FilterDbusInterface(ScheduleDbusInterface):
+    def __init__(self):
+        ScheduleDbusInterface.__init__(self)
 
-class FilterScheduleForm(ModelForm):
-    class Meta:
-        model = FilterSchedule
-        fields = GenericSchedule.form_fields
+    def dbus_get_schedule_list(self):
+    	return []

@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from models import FilterHistory, FilterSchedule, FilterScheduleForm
+from models import FilterScheduleForm, FilterDbusInterface
 from schedule.views import ScheduleViews
 
-schedule_views = ScheduleViews(__name__.split('.')[0], FilterSchedule, FilterScheduleForm)
+schedule_views = ScheduleViews(__name__.split('.')[0],
+	FilterDbusInterface(), FilterScheduleForm)
 
 def index_get(request):
-    return render(request, 'filter/index.html', {'filter_status_list' : FilterHistory.objects.all() })
+    return render(request, 'filter/index.html', {'filter_status_list' : None })
 
 def schedule_get(request):
     return schedule_views.get(request)
