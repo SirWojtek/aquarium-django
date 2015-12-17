@@ -69,6 +69,14 @@ class Task:
             get_raw_day(self.end_day), (self.end_time.hour, self.end_time.minute),
             self.status)
 
+    def to_form_initial(self):
+        return {
+            'start_day' : get_raw_day(self.start_day),
+            'start_time' : self.start_time,
+            'end_day' : get_raw_day(self.end_day),
+            'end_time' : self.end_time,
+            'status' : self.status }
+
     def __repr__(self):
         return self._get_js_format()
 

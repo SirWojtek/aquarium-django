@@ -24,27 +24,28 @@ class ScheduleViews:
         self._dbus_schedule_interface.add_schedule_task(Task.from_form(task))
         return redirect(self._module_name + ':schedule_get')
 
-    def edit(self, request, task):
+    def edit(self, request, id):
         if not request.POST:
-            return _schedule_edit_fill_form(request, task)
+            return self._edit_fill_form(request, id)
         else:
-            return _schedule_edit_commit_changes(request, task)
+            return self._edit_commit_changes(request, id)
 
-    def _edit_fill_form(self, request, task):
-        add_form = self._form_class(instance = task)
+    def _edit_fill_form(self, request, id):
+        task = self._dbus_schedule_interface.get_task_from_list(id)
+        add_form = self._form_class(initial = task.to_form_initial())
         return render(request, 'common/schedule.html', {
             'schedule_list' : self._dbus_schedule_interface.get_schedule_list(),
             'add_view' : self._module_name + ':schedule_add',
             'edit_view' : self._module_name + ':schedule_edit',
             'delete_view' : self._module_name + ':schedule_delete',
             'schedule_form' : add_form,
-            'edited_id' : task.id })
+            'edited_id' : id })
 
-    def _edit_commit_changes(self, request, task):
+    def _edit_commit_changes(self, request, id):
         changes = self._form_class(request.POST)
         if not changes.is_valid():
             raise Exception(self._module_name + ".shedule_add form validation fails")
-        self._dbus_schedule_interface.update_schedule_task(task, changes)
+        self._dbus_schedule_interface.update_schedule_task(id, Task.from_form(changes))
         return redirect(self._module_name + ':schedule_get')
 
     def delete(self, request, task_id):

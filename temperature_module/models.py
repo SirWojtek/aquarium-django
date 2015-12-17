@@ -16,12 +16,12 @@ class TemperatureDbusInterface(ScheduleDbusInterface):
     def add_schedule_task(self, task):
         Dbus.add_schedule_task(task.to_dbus_message())
 
-    def update_schedule_task(self, old_task, new_task):
-        print "update"
-        print old_task, new_task
+    def update_schedule_task(self, old_task_id, new_task):
+        old_task = self.get_task_from_list(old_task_id)
+        Dbus.update_schedule_task(old_task.to_dbus_message(), new_task.to_dbus_message())
 
     def remove_schedule_task(self, id):
-        to_remove = self._get_task_from_list(id)
+        to_remove = self.get_task_from_list(id)
         Dbus.remove_schedule_task(to_remove.to_dbus_message())
 
     def _update_task_list(self):
@@ -31,6 +31,6 @@ class TemperatureDbusInterface(ScheduleDbusInterface):
             self._task_list.append(Task.from_dbus(current_id, task))
             current_id += 1
 
-    def _get_task_from_list(self, id):
+    def get_task_from_list(self, id):
         id = int(id)
         return next(x for x in self._task_list if x.id == id)
