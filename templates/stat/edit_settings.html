@@ -1,0 +1,18 @@
+{% extends "common/base.html" %}
+
+{% block title %}Aquarium Project - Settings edit{% endblock %}
+
+{% block content %}
+<h3>Settings edit</h3>
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{ settings_form }}
+    <button class="send" type="submit" formmethod="post" formaction="{% url 'stat_module:edit_settings' %}">Add</button>
+</form>
+
+{% if not editable %}
+<h4>To enable settings editing first activate manual mode</h4>
+{% endif %}
+
+{% endblock %}
