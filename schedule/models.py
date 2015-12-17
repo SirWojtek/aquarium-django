@@ -61,7 +61,6 @@ class Task:
         task.end_day = get_readable_day(form_task.cleaned_data['end_day'])
         task.end_time = form_task.cleaned_data['end_time']
         task.status = form_task.cleaned_data['status']
-        print task
         return task
 
     def to_dbus_message(self):

@@ -39,8 +39,6 @@ function is_task_within_another(t, a) {
 }
 
 function is_currently_edited_task(edited, current) {
-    console.log(edited)
-    console.log(current)
     return (edited != null && edited.id == current.id)
 }
 

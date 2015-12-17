@@ -30,7 +30,6 @@ class Dbus:
     @classmethod
     def remove_schedule_task(cls, task):
         obj = cls._get_dbus_object()
-        print task
         return obj.remove_schedule_task(task, dbus_interface = cls.interface_name)
 
     @classmethod
