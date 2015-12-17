@@ -88,18 +88,43 @@ class Task:
                 self.end_time, get_raw_day(self.end_day), self.id)
 
 class ScheduleDbusInterface:
-    @staticmethod
-    def get_schedule_list():
+    def __init__(self):
+        self._update_task_list()
+
+    def _update_task_list(self):
+        current_id = 1
+        self._task_list = []
+        for task in self.dbus_get_schedule_list():
+            self._task_list.append(Task.from_dbus(current_id, task))
+            current_id += 1
+
+    def get_task_from_list(self, id):
+        id = int(id)
+        return next(x for x in self._task_list if x.id == id)
+
+    def get_schedule_list(self):
+        self._update_task_list()
+        return self._task_list
+
+    def add_schedule_task(self, task):
+        self.dbus_add_schedule_task(task.to_dbus_message())
+
+    def update_schedule_task(self, old_task_id, new_task):
+        old_task = self.get_task_from_list(old_task_id)
+        self.dbus_update_schedule_task(old_task.to_dbus_message(), new_task.to_dbus_message())
+
+    def remove_schedule_task(self, id):
+        to_remove = self.get_task_from_list(id)
+        self.dbus_remove_schedule_task(to_remove.to_dbus_message())
+
+    def dbus_get_schedule_list(self):
         raise NotImplementedError()
 
-    @staticmethod
-    def add_schedule_task(task):
+    def dbus_add_schedule_task(self, task):
         raise NotImplementedError()
 
-    @staticmethod
-    def update_schedule_task(old_task, new_task):
+    def dbus_update_schedule_task(self, old_task, new_task):
         raise NotImplementedError()
 
-    @staticmethod
-    def remove_schedule_task(task):
+    def dbus_remove_schedule_task(self, task):
         raise NotImplementedError()

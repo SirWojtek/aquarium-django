@@ -7,30 +7,16 @@ class TemperatureScheduleForm(ScheduleForm):
 
 class TemperatureDbusInterface(ScheduleDbusInterface):
     def __init__(self):
-        self._update_task_list()
+        ScheduleDbusInterface.__init__(self)
 
-    def get_schedule_list(self):
-        self._update_task_list()
-        return self._task_list
+    def dbus_get_schedule_list(self):
+        return Dbus.get_schedule_list()
 
-    def add_schedule_task(self, task):
-        Dbus.add_schedule_task(task.to_dbus_message())
+    def dbus_add_schedule_task(self, task):
+        Dbus.add_schedule_task(task)
 
-    def update_schedule_task(self, old_task_id, new_task):
-        old_task = self.get_task_from_list(old_task_id)
-        Dbus.update_schedule_task(old_task.to_dbus_message(), new_task.to_dbus_message())
+    def dbus_update_schedule_task(self, old_task, new_task):
+        Dbus.update_schedule_task(old_task, new_task)
 
-    def remove_schedule_task(self, id):
-        to_remove = self.get_task_from_list(id)
-        Dbus.remove_schedule_task(to_remove.to_dbus_message())
-
-    def _update_task_list(self):
-        current_id = 1
-        self._task_list = []
-        for task in Dbus.get_schedule_list():
-            self._task_list.append(Task.from_dbus(current_id, task))
-            current_id += 1
-
-    def get_task_from_list(self, id):
-        id = int(id)
-        return next(x for x in self._task_list if x.id == id)
+    def dbus_remove_schedule_task(self, task):
+        Dbus.remove_schedule_task(task)
