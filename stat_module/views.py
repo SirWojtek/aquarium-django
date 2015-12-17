@@ -3,8 +3,8 @@ from models import Status, Settings
 from dbus_communication.dbus_interface import Dbus
 
 def index_get(request):
-    status = _get_status()
-    settings = Settings.get()
+    status = Status(Dbus.get_temperature_status(), Dbus.get_manual_mode())
+    settings = Settings(Dbus.get_temperature_settings())
 
     if not settings:
         raise Exception("No settings can be found")
@@ -12,8 +12,3 @@ def index_get(request):
     return render(request, 'stat/index.html', {
         'status' : status,
         'settings' : settings })
-
-def _get_status():
-    status = Status()
-    status.temperature = Dbus.get_temperature_status()
-    return status

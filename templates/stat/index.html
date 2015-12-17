@@ -15,12 +15,15 @@
         </td>
     </tr>
     <tr>
-        <td>
-            {% if status %}
+        <td width="50%">
             <table>
                 <tr>
                     <td><b>Temperature</b></td>
                     <td>{{ status.temperature }}</td>
+                </tr>
+                <tr>
+                    <td><b>Manual mode</b></td>
+                    <td>{{ status.manual_mode }}</td>
                 </tr>
                 <tr>
                     <td><b>Heating</b></td>
@@ -39,12 +42,8 @@
                     <td>{{ status.last_update }}</td>
                 </tr>
             </table>
-            {% else %}
-                <h4> No data available</h4>
-            {% endif %}
         </td>
         <td width="50%">
-
             <table>
                 <tr>
                     <td><b>Temperature</b></td>

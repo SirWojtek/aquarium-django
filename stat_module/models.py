@@ -1,36 +1,17 @@
-from django.db import models
-from defaults import Default
 
-# Contains data from driver
-class Status(models.Model):
-    temperature = models.IntegerField()
-    heating_status = models.BooleanField()
-    filter_status = models.BooleanField()
-    light_status = models.BooleanField()
-    last_update = models.DateTimeField(auto_now_add = True)
+class Status():
+    def __init__(self, temperature, manual_mode):
+        self.temperature = temperature
+        self.manual_mode = bool(manual_mode)
+        self.heating_status = None
+        self.filter_status = None
+        self.light_status = None
+        self.last_update = None
 
-    # There should be only one record in this table
-    def save(self, *args, **kwargs):
-        Status.objects.all().delete()
-        models.Model.save(self, *args, **kwargs)
-
-    @staticmethod
-    def get():
-        return Status.objects.all().first()
-
-# Contains data for driver
-class Settings(models.Model):
-    temperature = models.IntegerField()
-    heating_status = models.BooleanField()
-    filter_status = models.BooleanField()
-    light_status = models.BooleanField()
-    last_update = models.DateTimeField(auto_now_add = True)
-
-    # There should be only one record in this table
-    def save(self, *args, **kwargs):
-        Settings.objects.all().delete()
-        models.Model.save(self, *args, **kwargs)
-
-    @staticmethod
-    def get():
-        return Settings.objects.all().first()
+class Settings():
+    def __init__(self, temperature):
+        self.temperature = temperature
+        self.heating_status = None
+        self.filter_status = None
+        self.light_status = None
+        self.last_update = None
