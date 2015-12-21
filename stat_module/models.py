@@ -1,8 +1,8 @@
 from django import forms
 
 class SettingsForm(forms.Form):
-    manual_mode = forms.BooleanField()
-    temperature = forms.IntegerField()
+    manual_mode = forms.BooleanField(required = False)
+    temperature = forms.IntegerField(required = False)
 
     def disable_edit(self):
         self.fields['temperature'].widget.attrs['readonly'] = True
@@ -24,6 +24,10 @@ class Settings():
         self.filter_status = None
         self.light_status = None
         self.last_update = None
+
+    @staticmethod
+    def from_form(form):
+        return Settings(form.cleaned_data['temperature'], form.cleaned_data['manual_mode'])
 
     def to_form_initial(self):
         return {
