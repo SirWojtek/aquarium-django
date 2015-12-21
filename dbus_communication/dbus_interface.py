@@ -18,14 +18,19 @@ class Dbus:
         return obj.get_temperature_settings(dbus_interface = cls.interface_name)
 
     @classmethod
-    def set_temperature_settings(cls):
+    def set_temperature_settings(cls, settings):
         obj = cls._get_dbus_object()
-        return obj.set_temperature_settings(dbus_interface = cls.interface_name)
+        return obj.set_temperature_settings(settings, dbus_interface = cls.interface_name)
 
     @classmethod
     def get_manual_mode(cls):
         obj = cls._get_dbus_object()
         return obj.get_manual_mode(dbus_interface = cls.interface_name)
+
+    @classmethod
+    def set_manual_mode(cls, manual_mode):
+        obj = cls._get_dbus_object()
+        return obj.set_manual_mode(manual_mode, dbus_interface = cls.interface_name)
 
     @classmethod
     def get_schedule_list(cls):
