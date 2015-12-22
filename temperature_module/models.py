@@ -31,7 +31,7 @@ class TemperatureHistory:
                 minute = dbus_record[5], second = dbus_record[6])
 
     def __init__(self, dbus_history):
-        self._history = [ TemperatureRecord(x) for x in dbus_history ]
+        self._history = [ self.TemperatureRecord(x) for x in dbus_history ]
 
     def __iter__(self):
         return self._history.__iter__()
