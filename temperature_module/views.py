@@ -1,12 +1,14 @@
 from django.shortcuts import render
-from models import TemperatureScheduleForm, TemperatureDbusInterface
+from models import TemperatureScheduleForm, TemperatureDbusInterface, TemperatureHistory
 from schedule.views import ScheduleViews
+from dbus_communication.dbus_interface import Dbus
 
 schedule_views = ScheduleViews(__name__.split('.')[0],
-	TemperatureDbusInterface(), TemperatureScheduleForm)
+    TemperatureDbusInterface(), TemperatureScheduleForm)
 
 def index_get(request):
-    return render(request, 'temperature/index.html', {'temp_list' : None })
+    history = TemperatureHistory(Dbus.get_temperature_history())
+    return render(request, 'temperature/index.html', {'temp_list' : history })
 
 def schedule_get(request):
     return schedule_views.get(request)

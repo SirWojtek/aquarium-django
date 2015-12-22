@@ -53,5 +53,10 @@ class Dbus:
         return obj.remove_schedule_task(task, dbus_interface = cls.interface_name)
 
     @classmethod
+    def get_temperature_history(cls):
+        obj = cls._get_dbus_object()
+        return obj.get_temperature_history(dbus_interface = cls.interface_name)
+
+    @classmethod
     def _get_dbus_object(cls):
         return cls.bus.get_object(cls.service_name, cls.service_object)

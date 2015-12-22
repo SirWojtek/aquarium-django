@@ -4,7 +4,6 @@
 
 {% block content %}
 <h3>Data read from database:</h3>
-{% if temp_list %}
 <table width="100%" border="1">
 <tr>
     <td><b>Timestamp</b></td>
@@ -15,10 +14,11 @@
     <td>{{ temp.timestamp }}</td>
     <td>{{ temp.value }}</td>
 </tr>
+{% empty %}
+    <td>No data</td>
+    <td>No data</td>
 {% endfor %}
 </table>
-{% else %}
-    <p>No temperature data are available.</p>
-{% endif %}
+<br/>
 <a href="{% url 'temperature_module:schedule_get' %}">Schedule</a>
 {% endblock %}
